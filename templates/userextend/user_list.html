@@ -1,0 +1,50 @@
+{% extends 'base.html' %}{% block title %}
+    Job list
+{% endblock %}
+
+{% block content %}
+    <div class="position-relative overflow-hidden p-2 text-center bg-light back-color text-white">
+        <div class="col-md-5 p-lg-5 mx-auto my-3">
+            <h1 class="display-4 fw-normal">Lista de candidatii disponibili</h1>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 mt-5">
+            {% for candidat in all_candidates %}
+                <div class="col">
+                    <div class="card shadow">
+                        {% if candidat.photo %}
+                            <img src="{{ candidat.photo.url }}" class="border border-success" alt="..."
+                                 width="100%"
+                                 height="250px">
+                        {% else %}
+                            <img src="../../static/img/icon.jpg" class="border border-success" alt="..."
+                                 width="100%"
+                                 height="250px">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ candidat.first_name }}</h5>
+                            <h5 class="card-title text-center">{{ candidat.last_name }}</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural
+                                lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="justify-content-between align-items-center">
+                                <div class="d-grid text-center ">
+                                    <a href="{% url 'candidate_details' candidat.id %}" class="btn btn-success">Vizualizează</a>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <small class="text-muted bg-white">{{ candidat.created_at|timesince }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

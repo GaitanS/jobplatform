@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+    Choose
+{% endblock %}
+{% block content %}
+    <div class="position-relative overflow-hidden p-2 text-center bg-light back-color text-white">
+        <div class="col-md-5 p-lg-5 mx-auto my-3">
+            <h1 class="display-4 fw-normal">Înregistrează un cont nou.
+                Alege tipul de cont.</h1>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 g-2">
+                <div class="col">
+                    <div class="card shadow">
+
+                        <div class="card-body">
+                            <h5 class="card-title display-4">Candidat/Angajat</h5>
+                            <p class="card-text">
+                            <ul>
+                                <li>locuri de muncă disponibile</li>
+                                <li>Anunțuri și companii verificate manual</li>
+                                <li>Recomandări personalizate de joburi</li>
+                            </ul>
+                            </p>
+                            <div class="justify-content-between align-items-center">
+                                <div class="d-grid text-center ">
+                                    <button type="button" class="btn btn-md btn-outline-success">Înregistrează-te</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow">
+
+                        <div class="card-body">
+                            <h5 class="card-title display-4">Companie</h5>
+                            <p class="card-text">
+                            <ul>
+                            <li>Anunțuri de recrutare performante</li>
+                            <li>Sortarea inteligentă a aplicanților</li>
+                            <li>Customer care impecabil</li>
+                            </ul>
+                            </p>
+                            <div class="justify-content-between align-items-center">
+                                <div class="d-grid text-center ">
+                                    <button type="button" class="btn btn-md btn-outline-success">Înregistrează-te</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

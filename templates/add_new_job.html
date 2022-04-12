@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}
+    Create a job
+{% endblock %}
+
+{% block content %}
+    <div class="position-relative overflow-hidden p-2 text-center bg-light back-color text-white">
+        <div class="col-md-5 p-lg-5 mx-auto my-3">
+            <h1 class="display-4 fw-normal">Înregistrează un anunț nou</h1>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+    <section>
+        <div class="container mb-5 pt-2">
+            <div class="row">
+                <div class="col-12 col-sm-7 m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <br>
+                                <div class="container">
+                                    <form method="post" enctype="multipart/form-data" action="{% url 'create_job' %}">
+                                        {% csrf_token %}
+
+                                            <div class="input-group mb-3" >
+                                                <span class="input-group-text">Titlul Anunțului</span>
+                                                {{ form.name }}
+                                                <p>{{ form.name.errors.as_text }}</p>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Orașul</span>
+                                                {{ form.location|add_class:"form-control" }}
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Tipul de job</span>
+                                                {{ form.job_type|add_class:"form-control" }}
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Contractul</span>
+                                                {{ form.contract_type|add_class:"form-control" }}
+                                            </div>
+                                            <div class="input-group mb-3 ">
+                                                <span class="input-group-text">Nivelul de pregătire</span>
+                                                {{ form.education|add_class:"form-control" }}
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Local sau distanta</span>
+                                                {{ form.local_or_distance|add_class:"form-control" }}
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Experienta</span>
+                                                {{ form.experience|add_class:"form-control" }}
+                                            </div>
+                                            <div class="input-group mb-3 border-0">
+                                                <span class="input-group-text">Salariu</span>
+                                                {{ form.salary }}
+                                                <span class="input-group-text">Moneda</span>
+                                                {{ form.salary_type|add_class:"form-control" }}
+                                            </div>
+
+                                            <div class="input-group mb-3 border-0">
+                                                <span class="input-group-text">In ce categorie intra anunțul</span>
+                                                {{ form.category }}
+                                            </div>
+
+                                            <div class="input-group mb-3 border-0">
+                                                <span class="input-group-text">Descrierea job-ului</span>
+                                                {{ form.description }}
+                                            </div>
+                                            <div class="input-group mb-3 border-0">
+                                                <span class="input-group-text">Telefon</span>
+                                                {{ form.phone }}
+                                            </div>
+
+                                            <div class="input-group mb-3 border-0 text-center">
+                                                <span class="input-group-text">Încarcă o imagine pentru a aparea in anunt</span>
+                                                <div>
+                                                    {{ form.image|add_class:"form-control" }}
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-success">Înregistrare</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

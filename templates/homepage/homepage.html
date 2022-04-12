@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Homepage {% endblock %}
+{% block content %}
+    <div class="position-relative overflow-hidden p-2 text-center bg-light back-color text-white">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 fw-normal">Descoperiți {{ all_jobs }}+ locuri de muncă aici</h1>
+            <form action="{% url 'search_bar' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control form-control-lg" aria-label="" name="q"
+                           placeholder="Cuvinte cheie ex: constructii, fabrica,etc">
+                    <button type="submit" class="input-group-text btn-success"><i class="bi bi-search me-2"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+    {#    Title#}
+    <div class="text-center p-3">
+        <p class="mb-0 fw-light">{{ all_jobs_in_the_past_7_days }} Joburi noi</p>
+        <h1 class="fw-bold">Noi locuri de muncă</h1>
+    </div>
+
+    {#    Cards#}
+    <div class="album py-5 bg-light">
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for ad in all_ads|slice:":3" %}
+                    <div class="col">
+                        <div class="card border border-success ">
+                            <div class="card-body">
+                                {% if ad.image %}
+                                    <img src="{{ ad.image.url }}" class="border border-success" alt="..." width="100%"
+                                         height="250px">
+                                {% else %}
+                                    <img src="../../static/img/job_img.png" class="border border-success" alt="..."
+                                         width="100%"
+                                         height="250px">
+                                {% endif %}
+                                <h5 class="card-title mt-3 custom_text_color">
+                                    {{ ad.name |slice:"39" }}{% if value|length > 36 %}...{% endif %}</h5>
+                                <p class="card-text mt-2">
+                                    {{ ad.description |slice:"200" }}{% if value|length > 201 %}...{% endif %}</p>
+                                <div class="justify-content-between align-items-center">
+                                    <div class="d-grid text-center ">
+                                        <a href="{% url 'job_details' ad.id %}" class="btn btn-md btn-outline-success">Detalii</a>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <small class="text-muted bg-white">
+                                        Postat: {{ ad.created_at|timesince }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+                {#    Button load more#}
+                <div class="col-md-12 col-sm-12">
+                    <div class="text-center">
+                        <a href="{% url 'view_ad' %}" class="btn btn-success">Mai multe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {#    Procesul#}
+    <div class="text-center p5 mt-5 border-top">
+        <h1> Cum procedam? </h1>
+        <div class="row p-3">
+            <div class="col-md-4 col-sm-4">
+                <div class="working-process">
+								<span class="process-img">
+									<img src="../../static/img/step-1.png" class="img-responsive" alt="">
+								</span>
+                    <h4>Creați un cont</h4>
+                    <p>Postați o lucrare pentru a ne spune despre proiectul dumneavoastră. Vă vom pune rapid în legătură
+                        cu freelancerii potriviți găsiți locul cel mai bun.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="working-process">
+								<span class="process-img">
+									<img src="../../static/img/step-2.png" class="img-responsive" alt="">
+								</span>
+                    <h4>Căutați locuri de muncă</h4>
+                    <p>Postați o lucrare pentru a ne spune despre proiectul dumneavoastră. Vă vom pune rapid în legătură
+                        cu freelancerii potriviți găsiți locul cel mai bun.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="working-process">
+								<span class="process-img">
+									<img src="../../static/img/step-3.png" class="img-responsive" alt="">
+								</span>
+                    <h4>Save &amp; Aplicați</h4>
+                    <p>Postați o lucrare pentru a ne spune despre proiectul dumneavoastră. Vă vom pune rapid în legătură
+                        cu freelancerii potriviți găsiți locul cel mai bun.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container border-top">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="main-heading">
+                    <p class="fs-4 fw-bold mb-0 mt-2">Candidatii</p>
+                    <h4 class="display-6 fw-bold">Angajați un <span class="custom_text_color">Candidat</span></h4>
+                </div>
+            </div>
+        </div>
+        {#    Candidat#}
+        <div class="album py-5 bg-light ">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                    {% for candidat in all_candidates|slice:":4" %}
+                        <div class="col">
+                            <div class="card shadow">
+                                {% if candidat.photo %}
+                                    <img src="{{ candidat.photo.url }}" class="border border-success" alt="..."
+                                         width="100%"
+                                         height="250px">
+                                {% else %}
+                                    <img src="{% static 'img/icon.jpg' %}" class="border border-success" alt="..."
+                                         width="100%"
+                                         height="250px">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ candidat.first_name }}</h5>
+                                    <h5 class="card-title text-center">{{ candidat.last_name }}</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to
+                                        additional content. This content is a little bit longer.</p>
+                                    <div class="justify-content-between align-items-center">
+                                        <div class="d-grid text-center">
+                                            <a href="{% url 'candidate_details' candidat.id %}" class="btn btn-success">Vizualizează</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <small class="text-muted bg-white">{{ candidat.created_at|timesince }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {#    Button load more#}
+                    <div class="col-md-12 col-sm-12">
+                        <div class="text-center">
+                            <a href="{% url 'list_candidates' %}" class="btn btn-success">Mai multe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    call#}
+    <div class="row text-center call-background">
+        <div class="col-lg-12 mb-3">
+            <div class="call-to-act">
+                <div class="call-to-act-head">
+                    <h3>Vrei să devii un angajator de succes?</h3>
+                    <span>Vă vom ajuta să vă dezvoltați cariera și să creșteți.</span>
+                </div>
+                <a href="#" class="btn rounded-pill fw-bold border fs-3">Înscrieți-vă astăzi</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

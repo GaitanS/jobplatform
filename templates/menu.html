@@ -1,0 +1,22 @@
+<ul class="nav nav-pills justify-content-center fs-6 ">
+    <li class="nav-item">
+        <a class="nav-link custom_hover" aria-current="page" href="{% url 'create_job' %}">Adaugă anunț nou</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link custom_hover" aria-current="page" href="{% url 'homepage' %}">Acasă</a>
+    </li>
+    {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link border-success" href="{% url 'profile' profil.id %}">Profilul</a>
+        </li>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout {{ request.user.username }}</a>
+
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link custom_hover" aria-current="page" href="{% url 'login' %}">Autentificare</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link border-success text-white active" href="{% url 'signup' %}">Înregistrare</a>
+        </li>
+    {% endif %}
+</ul>

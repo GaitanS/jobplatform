@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Job Details {% endblock %}
+{% block content %}
+    <div class="position-relative overflow-hidden p-2 text-center bg-light back-color text-white">
+        <div class="col-md-5 p-lg-5 mx-auto my-3">
+            <h1 class="display-4 fw-normal">Detalii Job</h1>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-">
+                {% if ad.image %}
+                    <div class="p-3 text-center">
+                        <img src="{{ ad.image.url }}" class="border border-success" alt="..." width="50%">
+                    </div>
+                {% else %}
+                    <div class="p-3 border bg-light text-center">
+                        <img src="../../static/img/job_img.png" class="border border-success" alt="..." width="50%"
+                             height="50%">
+                    </div>
+                {% endif %}
+            </div>
+            <h4 class="display-6 text-center ">{{ ad.name }}</h4>
+            <div class="bg-light border">
+                <span>Postat : {{ ad.created_at }}</span>
+                <p>Contract : {{ ad.contract_type }}</p>
+                <span>Tip : {{ ad.job_type }}</span>
+                <p>Salariu : {{ ad.salary }} {{ ad.salary_type }}</p>
+                <span>Oras : {{ ad.location }}</span>
+                <p>Educatie : {{ ad.education }}</p>
+                <span>Experienta : {{ ad.experience }}</span>
+
+            </div>
+        </div>
+        <h5 class="display-7 mt-5">Descriere:</h5>
+        <div class="mt-2">{{ ad.description }}</div>
+        <div class="ms-auto text-center mt-5 bg-light border">
+
+            <p>Status : {{ ad.active }}</p>
+            <p>Contact : {{ ad.phone }}</p>
+
+        </div>
+    </div>
+    {#        <div class="container overflow-hidden mt-5">#}
+    {#            <div class="row gy-5">#}
+    {#                <div class="col-6">#}
+    {#                    {% if ad.image %}#}
+    {#                        <div class="p-3 border bg-light">#}
+    {#                            <img src="{{ ad.image.url }}" class="border border-success" alt="..." width="100%">#}
+    {#                        </div>#}
+    {#                    {% else %}#}
+    {#                        <div class="p-3 border bg-light text-center">#}
+    {#                            <img src="../../static/img/job_img.png" class="border border-success" alt="..." width="50%"#}
+    {#                                 height="50%">#}
+    {#                        </div>#}
+    {#                    {% endif %}#}
+    {#                </div>#}
+    {#                <div class="col-6">#}
+    {#                    <div class="p-3 border bg-light text-center">#}
+    {#                        <img src="{{ user.photo.url }}" class="rounded-circle border border-success" alt="..."#}
+    {#                             width="200"#}
+    {#                             height="200">#}
+    {#                        <p>Postat : {{ ad.created_at }}</p>#}
+    {#                        <p>Contract : {{ ad.contract_type }}</p>#}
+    {#                        <p>Tip : {{ ad.job_type }}</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="col-6">#}
+    {#                    <div class="p-3 border bg-light">{{ ad.name }}</div>#}
+    {#                </div>#}
+    {#                <div class="col-6">#}
+    {#                    <div class="p-3 border bg-light">{{ ad.created_at|timesince }}</div>#}
+    {#                </div>#}
+    {#                <a href="{% url 'view_ad' %}" class="btn btn-primary">Inapoi</a>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+{% endblock %}
